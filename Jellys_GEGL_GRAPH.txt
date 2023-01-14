@@ -1,0 +1,11 @@
+id=1 src-in aux=[ ref=1 cubism tile-size=8 tile-saturation=0.45 seed=2781
+color-overlay value=#ffffff
+cubism tile-size=34 seed=2822
+oilify mask-radius=6
+snn-mean radius=12
+custom-bevel gaus=1 box=1 blendmode=GrainMerge coloroverlay=#00ff40
+ ]
+opacity value=5
+median-blur radius=2 alpha-percentile=68
+
+
