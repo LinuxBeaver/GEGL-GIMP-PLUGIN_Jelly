@@ -4,6 +4,10 @@ https://github.com/LinuxBeaver/GEGL-Custom-Bevel to work.
 It will not work proper at all without it. 
 
 
+![image preview](jelly.png )
+
+
+
 ## OS specific location to put GEGL Filter binaries 
 
 Windows
