@@ -22,6 +22,11 @@
 
 #ifdef GEGL_PROPERTIES
 
+property_boolean (restorepuff, _("Enable or Disable Edge Puff"), TRUE)
+  description    (_("In GEGL Pango Markup this option when disabled solves a clipping bug"))
+    ui_meta     ("role", "output-extent")
+
+
 enum_start (gegl_blend_mode_typecbevel2)
   enum_value (GEGL_BLEND_MODE_TYPE_HARDLIGHT2, "Hardlight",
               N_("HardLight"))
@@ -221,6 +226,7 @@ static void attach (GeglOperation *operation)
   gegl_operation_meta_redirect (operation, "snn", snn, "radius");
   gegl_operation_meta_redirect (operation, "radius", median, "radius");
   gegl_operation_meta_redirect (operation, "alpha_percentile", median, "alpha-percentile");
+  gegl_operation_meta_redirect (operation, "restorepuff", cb, "restorepuff");
 
 
 
