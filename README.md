@@ -64,5 +64,12 @@ meson setup --buildtype=release build
 ninja -C build
 ```
 
+## more image previews just to show off how based the plugin is.
+
+![image](https://github.com/LinuxBeaver/GEGL-Jelly/assets/78667207/d29d64f8-1120-4b5d-b0c1-70ea9f610f84)
+meme reference https://www.youtube.com/watch?v=ze4NQTXvxYc
+![image](https://github.com/LinuxBeaver/GEGL-Jelly/assets/78667207/7c18b077-aba9-49f5-bd07-700e51c277d5)
+
+
 
 
