@@ -1,3 +1,6 @@
+
+## GEGL Jelly a Gimp Plugin that covers things in goo. 
+
 This filter requires
 https://github.com/LinuxBeaver/GEGL-Custom-Bevel to work.
 
