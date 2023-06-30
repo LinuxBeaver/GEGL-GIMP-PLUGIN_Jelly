@@ -4,7 +4,9 @@
 This filter requires
 https://github.com/LinuxBeaver/GEGL-Custom-Bevel to work.
 
-It will not work proper at all without it. 
+People who wish to compile will have to go here to compile custom bevel.
+It will not work proper at all without it. People who uses binaries can find
+the binary of custom bevel included.
 
 
 ![image preview](jelly.png )
