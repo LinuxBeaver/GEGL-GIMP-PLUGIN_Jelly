@@ -163,7 +163,7 @@ In the future I wish it would be possible to just type in the blend mode name */
 
 
   median    = gegl_node_new_child (gegl,
-                                  "operation", "gegl:median-blur", "radius", 2.0,
+                                  "operation", "gegl:median-blur", "radius", 2.0,  "abyss-policy",  GEGL_ABYSS_NONE, 
                                   NULL);
 
 
