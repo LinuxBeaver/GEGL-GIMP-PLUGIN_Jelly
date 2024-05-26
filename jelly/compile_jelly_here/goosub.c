@@ -17,7 +17,7 @@
  * 2023 Beaver (GEGL Jelly)
  */
 
-/* GEGL GRAPH OF JELLY TO USE WITHOUT INSTALLING 
+/* GEGL GRAPH OF JELLY TO USE WITHOUT INSTALLING
 
 id=1 src-in aux=[ ref=1 cubism tile-size=8 tile-saturation=0.45 seed=2781
 color-overlay value=#ffffff
@@ -145,7 +145,7 @@ In the future I wish it would be possible to just type in the blend mode name */
   color    = gegl_node_new_child (gegl,
                                   "operation", "gegl:color-overlay",
                                    "value", hidden_color_jelly, NULL);
-                           
+
 
   snn    = gegl_node_new_child (gegl,
                                   "operation", "gegl:snn-mean",
@@ -163,35 +163,20 @@ In the future I wish it would be possible to just type in the blend mode name */
 
 
   median    = gegl_node_new_child (gegl,
-                                  "operation", "gegl:median-blur", "radius", 2.0,  "abyss-policy",  GEGL_ABYSS_NONE, 
+                                  "operation", "gegl:median-blur", "radius", 2,  "abyss-policy",  GEGL_ABYSS_NONE,
                                   NULL);
 
-
-
-
-
-
-
-  gegl_operation_meta_redirect (operation, "value", color, "value");
   gegl_operation_meta_redirect (operation, "tile_size", cubism, "tile-size");
   gegl_operation_meta_redirect (operation, "tile_size2", cubism2, "tile-size");
   gegl_operation_meta_redirect (operation, "tile_saturation", cubism, "tile-saturation");
   gegl_operation_meta_redirect (operation, "seed", cubism, "seed");
   gegl_operation_meta_redirect (operation, "seed", cubism2, "seed");
   gegl_operation_meta_redirect (operation, "mask_radius", oilify, "mask-radius");
-  gegl_operation_meta_redirect (operation, "snn_mean", snn, "radius");
   gegl_operation_meta_redirect (operation, "opacity", opacity, "value");
   gegl_operation_meta_redirect (operation, "depth", cb, "depth");
   gegl_operation_meta_redirect (operation, "coloroverlay", cb, "coloroverlay");
-  gegl_operation_meta_redirect (operation, "blendmode2", cb, "blendmode");
   gegl_operation_meta_redirect (operation, "snn", snn, "radius");
-  gegl_operation_meta_redirect (operation, "radius", median, "radius");
   gegl_operation_meta_redirect (operation, "alpha_percentile", median, "alpha-percentile");
-  gegl_operation_meta_redirect (operation, "restorepuff", cb, "restorepuff");
-
-
-
-
 
 
   gegl_node_link_many (input, in, nop, median, opacity, output, NULL);
