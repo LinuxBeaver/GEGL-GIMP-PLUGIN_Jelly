@@ -88,7 +88,8 @@ property_double (tile_size, _("Minor Goo Size"), 17.0)
 
 property_double (tile_saturation, _("Goo Spacing"), 0.55)
     description (_("At lower values this will space the Goo"))
-    value_range (0.22, 0.6)
+    value_range (0.22, 1.0)
+    ui_range (0.22, 0.6)
 
 
 property_seed (seed, _("Goo Random seed"), rand)
