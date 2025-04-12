@@ -110,60 +110,62 @@ property_double  (alpha_percentile, _("Median's Alpha Percentile"), 63)
 static void attach (GeglOperation *operation)
 {
   GeglNode *gegl = operation->node;
-  GeglNode *input, *cb, *in, *cubism, *cubism2, *oilify, *nop, *color, *snn, *opacity, *median, *output;
   GeglColor *hidden_color_jelly = gegl_color_new ("#ffffff");
 
-  input    = gegl_node_get_input_proxy (gegl, "input");
-  output   = gegl_node_get_output_proxy (gegl, "output");
+    GeglNode *input    = gegl_node_get_input_proxy (gegl, "input");
+    GeglNode *output   = gegl_node_get_output_proxy (gegl, "output");
 
 
 
-  cb    = gegl_node_new_child (gegl,
+    GeglNode *cb    = gegl_node_new_child (gegl,
                                   "operation", "lb:custom-bevel", "blendmode", 8,
                                   NULL);
 
 /* My Custom Bevel's 8th blend mode is Grain Merge. This is NOT present in the build of custom bevel tht was excepted in Gimp.
 In the future I wish it would be possible to just type in the blend mode name */
 
-  in    = gegl_node_new_child (gegl,
+    GeglNode *in    = gegl_node_new_child (gegl,
                                   "operation", "gegl:src-in",
                                   NULL);
 
 
-  cubism    = gegl_node_new_child (gegl,
+    GeglNode *cubism    = gegl_node_new_child (gegl,
                                   "operation", "gegl:cubism",
                                   NULL);
 
-  cubism2    = gegl_node_new_child (gegl,
+    GeglNode *cubism2    = gegl_node_new_child (gegl,
                                   "operation", "gegl:cubism",
                                   NULL);
 
-  oilify    = gegl_node_new_child (gegl,
+    GeglNode *oilify    = gegl_node_new_child (gegl,
                                   "operation", "gegl:oilify",
                                   NULL);
 
 
-  color    = gegl_node_new_child (gegl,
+    GeglNode *color    = gegl_node_new_child (gegl,
                                   "operation", "gegl:color-overlay",
                                    "value", hidden_color_jelly, NULL);
 
 
-  snn    = gegl_node_new_child (gegl,
+    GeglNode *snn    = gegl_node_new_child (gegl,
                                   "operation", "gegl:snn-mean",
                                   NULL);
 
 
-  opacity    = gegl_node_new_child (gegl,
+    GeglNode *opacity    = gegl_node_new_child (gegl,
                                   "operation", "gegl:opacity",
                                   NULL);
 
-  nop    = gegl_node_new_child (gegl,
+    GeglNode *nop    = gegl_node_new_child (gegl,
                                   "operation", "gegl:nop",
                                   NULL);
 
+    GeglNode *median2    = gegl_node_new_child (gegl,
+                                  "operation", "gegl:median-blur", "radius", 0,  "abyss-policy",  GEGL_ABYSS_NONE,
+                                  NULL);
 
 
-  median    = gegl_node_new_child (gegl,
+    GeglNode *median    = gegl_node_new_child (gegl,
                                   "operation", "gegl:median-blur", "radius", 2,  "abyss-policy",  GEGL_ABYSS_NONE,
                                   NULL);
 
@@ -180,7 +182,7 @@ In the future I wish it would be possible to just type in the blend mode name */
   gegl_operation_meta_redirect (operation, "alpha_percentile", median, "alpha-percentile");
 
 
-  gegl_node_link_many (input, in, nop, median, opacity, output, NULL);
+  gegl_node_link_many (input, in, nop, median, opacity, median2, output, NULL);
   gegl_node_link_many (input, cubism, color, cubism2, oilify, snn, cb, NULL);
   gegl_node_connect (in, "aux", cb, "output");
 
